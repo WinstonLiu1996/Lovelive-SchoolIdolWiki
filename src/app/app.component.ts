@@ -3,6 +3,9 @@ import { Idol } from './idol';
 
 import { IdolService } from './idol.service';
 
+import { OnInit } from '@angular/core';
+
+
 //Notice: shift+cmd+s to save all
 //Notice: _.component.ts Selector must have same name with html element name in index.html
 
@@ -71,15 +74,25 @@ import { IdolService } from './idol.service';
       margin-right: .8em;
       border-radius: 4px 0 0 4px;
     }
-  `]
+  `],
+  providers: [IdolService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Lovelive! School Idol Wiki';
   idols: Idol[];
   selectedIdol: Idol;
   
   constructor(private service: IdolService){
-	  this.idols = this.service.getIdols();
+  }
+  
+  getIdols(): void {
+	  //notice: return promise here. Promise.then()
+	  let promise = this.service.getIdols();
+	  promise.then(members => this.idols = members);
+  }
+  
+  ngOnInit(): void {
+	  this.getIdols();
   }
 
   onSelect(idol: Idol): void {

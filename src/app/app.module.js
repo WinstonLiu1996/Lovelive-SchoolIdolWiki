@@ -10,7 +10,6 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
 var idol_detail_component_1 = require("./idol-detail.component");
-var idol_service_1 = require("./idol.service");
 //ngModel: FormsModule into imports
 //idol-detail component: reg into declarations
 //dependency injection for service: IdolService into providers
@@ -29,10 +28,7 @@ AppModule = __decorate([
             app_component_1.AppComponent,
             idol_detail_component_1.IdolDetailComponent
         ],
-        bootstrap: [app_component_1.AppComponent],
-        providers: [
-            idol_service_1.IdolService
-        ]
+        bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
 exports.AppModule = AppModule;

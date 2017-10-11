@@ -11,14 +11,27 @@ var mock_idols_1 = require("./mock-idols");
 var IdolService = (function () {
     function IdolService() {
     }
-    IdolService.prototype.getIdols = function () {
-        return mock_idols_1.IDOLS;
+    // method1: Instant Get --- only write this getIdols(). Do not need else inside this class;
+    //	getIdols(): Promise<Idol[]> {
+    //			return Promise.resolve(IDOLS);
+    //	};
+    // method2: Latency 2seconds Get
+    IdolService.prototype.getIdolsHelper = function () {
+        return Promise.resolve(mock_idols_1.IDOLS);
     };
     ;
+    IdolService.prototype.getIdols = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            // Simulate server latency with 2 second delay
+            setTimeout(function () { return resolve(_this.getIdolsHelper()); }, 2000);
+        });
+    };
     return IdolService;
 }());
 IdolService = __decorate([
     core_1.Injectable()
 ], IdolService);
 exports.IdolService = IdolService;
+//Promise.resolve: Promise.resolve(value); Promise.resolve(promise); Promise.resolve(thenable); 
 //# sourceMappingURL=idol.service.js.map

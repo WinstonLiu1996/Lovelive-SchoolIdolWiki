@@ -19,9 +19,6 @@ import { IdolService } from './idol.service';
 	  AppComponent,
 	  IdolDetailComponent
 ],
-  bootstrap:    [ AppComponent ],
-  providers: [
-	  IdolService
-  ]
+  bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
