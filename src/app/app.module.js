@@ -10,9 +10,14 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
 var idol_detail_component_1 = require("./idol-detail.component");
-//ngModel: FormsModule into imports
-//idol-detail component: reg into declarations
-//dependency injection for service: IdolService into providers
+var idols_component_1 = require("./idols.component");
+var idol_service_1 = require("./idol.service");
+// Router
+var router_1 = require("@angular/router");
+var dashboard_component_1 = require("./dashboard.component");
+// ngModel: FormsModule into imports
+// idol-detail component: reg into declarations
+// dependency injection for service: IdolService into providers
 var AppModule = (function () {
     function AppModule() {
     }
@@ -22,12 +27,25 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [
             platform_browser_1.BrowserModule,
-            forms_1.FormsModule
+            forms_1.FormsModule,
+            router_1.RouterModule.forRoot([
+                {
+                    path: 'dashboard',
+                    component: dashboard_component_1.DashboardComponent
+                },
+                {
+                    path: 'idols',
+                    component: idols_component_1.IdolsComponent
+                }
+            ])
         ],
         declarations: [
             app_component_1.AppComponent,
-            idol_detail_component_1.IdolDetailComponent
+            idol_detail_component_1.IdolDetailComponent,
+            idols_component_1.IdolsComponent,
+            dashboard_component_1.DashboardComponent
         ],
+        providers: [idol_service_1.IdolService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

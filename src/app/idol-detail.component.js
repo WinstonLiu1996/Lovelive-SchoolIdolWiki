@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var idol_1 = require("./idol");
-//Create Model 三步曲：create, reg in module: declarations, html markup
+//Create Component 三步曲：create, reg in module: declarations, html markup
 var IdolDetailComponent = (function () {
     function IdolDetailComponent() {
     }
@@ -23,7 +23,7 @@ __decorate([
 IdolDetailComponent = __decorate([
     core_1.Component({
         selector: 'idol-detail',
-        template: "\n<div *ngIf=\"idol\">\n  <h2>Discover More About {{idol.name}}!</h2>\n  <div><label>id: </label>{{idol.id}}</div>\n  <div>\n  <label>name: </label>\n  <input [(ngModel)]=\"idol.name\" placeholder=\"name\"/>\n  </div>\n</div>"
+        template: "\n<div *ngIf=\"idol\">\n  <h2>Discover More About {{idol.name}}!</h2>\n  <div><label>id: </label>{{idol.id}}</div>\n  <div>\n  <label>description: </label>\n  <input [(ngModel)]=\"idol.description\" placeholder=\"description\" style=\"width: 800px\"/>\n  </div>\n</div>"
     })
 ], IdolDetailComponent);
 exports.IdolDetailComponent = IdolDetailComponent;
