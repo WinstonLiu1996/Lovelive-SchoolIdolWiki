@@ -1,20 +1,36 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location }                 from '@angular/common';
+
+import { IdolService } from './idol.service';
+
+import 'rxjs/add/operator/switchMap';
+
 import { Idol } from './idol';
 
 //Create Component 三步曲：create, reg in module: declarations, html markup
 @Component({
   selector: 'idol-detail',
-  template:`
-<div *ngIf="idol">
-  <h2>Discover More About {{idol.name}}!</h2>
-  <div><label>id: </label>{{idol.id}}</div>
-  <div>
-  <label>description: </label>
-  <input [(ngModel)]="idol.description" placeholder="description" style="width: 800px"/>
-  </div>
-</div>`
+  templateUrl: './idol-detail.component.html',
+  styleUrls: [ './idol-detail.component.css' ]
 })
-export class IdolDetailComponent {
+export class IdolDetailComponent implements OnInit{
 	@Input() idol: Idol;
 	
+	constructor(private idolService: IdolService,
+				private route: ActivatedRoute,
+				private location: Location) {
+		
+	}
+	
+	ngOnInit(): void {
+		this.route.paramMap
+	    .switchMap((params: ParamMap) => this.idolService.getIdol(+params.get('id')))
+	    .subscribe(idol => this.idol = idol);
+    }
+	
+	goBack(): void {
+		  this.location.back();
+		}
+
 }

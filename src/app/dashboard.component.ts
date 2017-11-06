@@ -1,7 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+
+import { Idol } from './idol';
+import { IdolService } from './idol.service';
 
 @Component({
   selector: 'my-dashboard',
-  template: '<h3>My Dashboard</h3>'
+  templateUrl: './dashboard.component.html',
+  styleUrls: [ './dashboard.component.css' ]
 })
-export class DashboardComponent { }
+export class DashboardComponent implements OnInit{
+
+	idols: Idol[] = [];
+
+	constructor(private idolService: IdolService) { }
+
+	ngOnInit(): void {
+		this.idolService.getIdols()
+		.then(idols => this.idols = idols.slice(1, 5));
+	}
+}

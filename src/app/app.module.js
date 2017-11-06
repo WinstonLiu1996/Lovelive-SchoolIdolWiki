@@ -9,12 +9,17 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
+var dashboard_component_1 = require("./dashboard.component");
 var idol_detail_component_1 = require("./idol-detail.component");
 var idols_component_1 = require("./idols.component");
 var idol_service_1 = require("./idol.service");
 // Router
-var router_1 = require("@angular/router");
-var dashboard_component_1 = require("./dashboard.component");
+var app_routing_module_1 = require("./app-routing.module");
+// Http Service
+var http_1 = require("@angular/http");
+//Imports for loading & configuring the in-memory web api
+var angular_in_memory_web_api_1 = require("angular-in-memory-web-api");
+var in_memory_data_service_1 = require("./in-memory-data.service");
 // ngModel: FormsModule into imports
 // idol-detail component: reg into declarations
 // dependency injection for service: IdolService into providers
@@ -28,16 +33,9 @@ AppModule = __decorate([
         imports: [
             platform_browser_1.BrowserModule,
             forms_1.FormsModule,
-            router_1.RouterModule.forRoot([
-                {
-                    path: 'dashboard',
-                    component: dashboard_component_1.DashboardComponent
-                },
-                {
-                    path: 'idols',
-                    component: idols_component_1.IdolsComponent
-                }
-            ])
+            app_routing_module_1.AppRoutingModule,
+            http_1.HttpModule,
+            angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(in_memory_data_service_1.InMemoryDataService, { delay: 500 })
         ],
         declarations: [
             app_component_1.AppComponent,

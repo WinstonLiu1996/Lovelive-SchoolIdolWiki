@@ -1,0 +1,9 @@
+<div *ngIf="idol">
+  <h2>Discover More About {{idol.name}}!</h2>
+  <div><label>id: </label>{{idol.id}}</div>
+  <div>
+  <label>description: </label>
+  <input [(ngModel)]="idol.description" placeholder="description" style="width: 800px"/>
+  </div>
+  <button (click)="goBack()">Back</button>
+ </div>
